@@ -1,6 +1,6 @@
 using System;
 
-namespace documentmangr.Models
+namespace documentmgr.Models
 {
     public class ErrorViewModel
     {

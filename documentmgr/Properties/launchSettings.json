@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "documentmangr": {
+    "documentmgr": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

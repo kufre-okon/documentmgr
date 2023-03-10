@@ -1,0 +1,63 @@
+﻿@model documentmgr.dto.SearchUserDto
+
+<div>
+    <div class="card">
+        <div class="card-header">
+            User Details
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.FirstName):
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.MiddleName):
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.MiddleName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.LastName):
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Email):
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+            </dl>
+            <b>Documents</b>
+            <ul class="list-group list-group-flush">
+                @foreach (var doc in Model.Documents)
+                {
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                @doc.Title@doc.Extension
+                            </div>
+                            <div>
+                                @if (doc.IsImage)
+                                {
+                                    <button data-title="@doc.Title@doc.Extension" data-id="@doc.Id" class="btn btn-sm btn-info btn-view-document">View</button>
+                                }
+                                else
+                                {
+                                    <a target="_blank" asp-action="downloadDoc" asp-route-id="@doc.Id" asp-controller="user" class="btn btn-sm btn-info">Open</a>
+                                }
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+</div>
+

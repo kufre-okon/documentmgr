@@ -1,0 +1,96 @@
+﻿@model documentmgr.dto.CreateUserDto
+
+@{
+    ViewData["Title"] = "New";
+}
+
+<h1>New User</h1>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="New">          
+            <div  class="text-danger">@ViewBag.error</div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <label asp-for="FirstName" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="FirstName" placeholder="Please enter firstname" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="MiddleName" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="MiddleName" class="form-control" />
+                    <span asp-validation-for="MiddleName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="LastName" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="LastName" placeholder="Please enter lastname" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Email" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div data-tag="documents" style="display:none">
+                @for (int i = 0; i < Model.Documents.Count(); i++)
+                {
+                    <div data-id="@i">
+                        @Html.HiddenFor(m => m.Documents[i].Id)
+                        @Html.HiddenFor(m => m.Documents[i].Title)
+                        @Html.HiddenFor(m => m.Documents[i].Extension)
+                    </div>
+                }
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Documents</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <small class="text-warning"><i>Maximum allow file size is 30MB</i></small>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="fileupload_ctrl">
+                                <label class="custom-file-label" for="fileupload_ctrl">Choose file</label>
+                            </div>
+                            <small class="form-label lbl-progress text-danger font-italic"></small>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-block btn-outline-info mb-1 btn-add-document">Upload</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 mt-2">
+                            <ul class="list-group lst-documents">
+                                @foreach (var x in Model.Documents)
+                                {
+                                    <li class="list-group-item pt-2 pb-2">@x.Title@x.Extension</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-right mt-5">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-area="" asp-controller="home" asp-action="index">Back to Home</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/new-user.js" asp-append-version="true"></script>   
+}
