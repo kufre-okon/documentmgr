@@ -2,7 +2,7 @@
 
 Demo Application that accept user information and uploaded documents.
 
-##**To Run**
+## **To Run**
 * Clone the repository into visual studio
 * The application is build on .Net Core 5
 * Create a new MSSQL server database for the application.
@@ -13,5 +13,5 @@ Demo Application that accept user information and uploaded documents.
     - `SenderEmail` 
     - `Password`
 
-* The application uses the code-first database development pattern. AS such on your Package Manager Console, run ``` update-database``` to execute the migration files.
+* The application uses the code-first database development pattern. On the Package Manager Console, switch to "documentmgr.data" project and run ` update-database` to execute the migration files.
 * Once the migration is successful, go ahead to load the application!!!
